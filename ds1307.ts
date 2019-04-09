@@ -59,7 +59,7 @@ namespace DS1307 {
     //% weight=52 blockGap=8 
     //% parts=DS1307 trackArgs=0
     export function start() {
-        let t = getSecond()
+        let t = HexToDec(getReg(DS1307_REG_SECOND))
         setSecond(t & 0x7f)
     }
 
@@ -70,7 +70,7 @@ namespace DS1307 {
     //% weight=51 blockGap=8 
     //% parts=DS1307 trackArgs=0
     export function stop() {
-        let t = getSecond()
+        let t = HexToDec(getReg(DS1307_REG_SECOND))
         setSecond(t | 0x80)
     }
 
@@ -253,9 +253,9 @@ namespace DS1307 {
         pins.i2cWriteBuffer(DS1307_I2C_ADDR, buf)
     }
 
-    function frontZero (value: number): string {
+    function frontZero(value: number): string {
         let rtnString: string = ""
-        if (value < 10){
+        if (value < 10) {
             rtnString = "0" + value
         }
         else {
