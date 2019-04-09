@@ -101,8 +101,8 @@ namespace DS1307 {
     //% blockId="DS1307_GET_MONTH" block="month"
     //% weight=98 blockGap=8 
     //% parts=DS1307 trackArgs=0
-    export function getMonth(): number {
-        return HexToDec(getReg(DS1307_REG_MONTH))
+    export function getMonth(): string {
+        return frontZero(HexToDec(getReg(DS1307_REG_MONTH)))
     }
 
     /**
@@ -123,8 +123,8 @@ namespace DS1307 {
     //% blockId="DS1307_GET_DAY" block="day"
     //% weight=97 blockGap=8 
     //% parts=DS1307 trackArgs=0
-    export function getDay(): number {
-        return HexToDec(getReg(DS1307_REG_DAY))
+    export function getDay(): string {
+        return frontZero(HexToDec(getReg(DS1307_REG_DAY)))
     }
 
     /**
@@ -167,8 +167,8 @@ namespace DS1307 {
     //% blockId="DS1307_GET_HOUR" block="hour"
     //% weight=95 blockGap=8 
     //% parts=DS1307 trackArgs=0
-    export function getHour(): number {
-        return HexToDec(getReg(DS1307_REG_HOUR))
+    export function getHour(): string {
+        return frontZero(HexToDec(getReg(DS1307_REG_HOUR)))
     }
 
     /**
@@ -189,8 +189,8 @@ namespace DS1307 {
     //% blockId="DS1307_GET_MINUTE" block="minute"
     //% weight=94 blockGap=8 
     //% parts=DS1307 trackArgs=0
-    export function getMinute(): number {
-        return HexToDec(getReg(DS1307_REG_MINUTE))
+    export function getMinute(): string {
+        return frontZero(HexToDec(getReg(DS1307_REG_MINUTE)))
     }
 
     /**
@@ -211,8 +211,8 @@ namespace DS1307 {
     //% blockId="DS1307_GET_SECOND" block="second"
     //% weight=93 blockGap=8 
     //% parts=DS1307 trackArgs=0
-    export function getSecond(): number {
-        return HexToDec(getReg(DS1307_REG_SECOND))
+    export function getSecond(): string {
+        return frontZero(HexToDec(getReg(DS1307_REG_SECOND)))
     }
 
     /**
@@ -253,4 +253,14 @@ namespace DS1307 {
         pins.i2cWriteBuffer(DS1307_I2C_ADDR, buf)
     }
 
+    function frontZero (value: number): string {
+        let rtnString: string = ""
+        if (value < 10){
+            rtnString = "0" + value
+        }
+        else {
+            rtnString = value.toString()
+        }
+        return rtnString
+    }
 }
