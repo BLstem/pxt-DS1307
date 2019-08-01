@@ -1,4 +1,4 @@
-enum data {
+enum timeData {
     //%block="Year"
     year,
     //%block="Month"
@@ -83,7 +83,7 @@ namespace DS1307 {
     }
 
     //%block="get %info"
-    export function getInfo(info: data): string {
+    export function getInfo(info: timeData): string {
         switch (info) {
             case 0: return getYear()
             case 1: return getMonth()
