@@ -3,6 +3,6 @@ input.onButtonPressed(Button.A, () => {
 })
 DS1307.start()
 basic.forever(() => {
-    basic.showNumber(DS1307.getSecond() % 10)
+    basic.showString(DS1307.getInfo(data.second))
     basic.pause(100)
 })
